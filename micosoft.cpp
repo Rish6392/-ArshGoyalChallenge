@@ -35,3 +35,28 @@ public:
         return ans;
     }
 };
+
+
+// 2 (medium - 462. Minimum Moves to Equal Array Elements II)
+
+
+class Solution {
+public:
+    int minMoves2(vector<int>& nums) {
+        int n = nums.size();
+        int ans = 0;
+
+        // Sort the array to find the median
+        sort(nums.begin(), nums.end());
+
+        // Find the median
+        int median = nums[n / 2];
+
+        // Calculate the total moves required to make all elements equal to the median
+        for (int i = 0; i < n; i++) {
+            ans += abs(nums[i] - median);
+        }
+
+        return ans;
+    }
+};
