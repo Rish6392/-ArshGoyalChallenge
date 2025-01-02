@@ -60,3 +60,39 @@ public:
         return ans;
     }
 };
+
+
+
+// 3(medium--Wiggle Sort)
+
+
+class Solution {
+public:
+    void wiggleSort(vector<int>& nums) {
+        int n = nums.size();
+        
+        // Step 1: Sort the array
+        sort(nums.begin(), nums.end());
+        
+        // Step 2: Create a temporary array to store the wiggle sorted result
+        vector<int> temp = nums;
+        
+        // Step 3: Fill the array in wiggle order
+        int mid = (n - 1) / 2; // Middle element
+        int end = n - 1;       // Last element
+        int index = 0;         // Index for filling `nums`
+        
+        // Fill odd indices with the smaller half (reversed)
+        for (int i = mid; i >= 0; --i) {
+            nums[index] = temp[i];
+            index += 2;
+        }
+        
+        // Fill even indices with the larger half (reversed)
+        index = 1;
+        for (int i = end; i > mid; --i) {
+            nums[index] = temp[i];
+            index += 2;
+        }
+    }
+};
