@@ -164,3 +164,31 @@ public:
         return circle.front(); // returns remaining element in the circle
     }
 };
+
+
+//6(medium - count number of nice subarray)
+
+class Solution {
+public:
+    int numberOfSubarrays(vector<int>& nums, int k) {
+        int subarray =0, initialgap =0,qsize =0,start=0;
+        for(int end =0;end<nums.size();end++){
+            //if current element is odd,increament qsize by 1.
+            if(nums[end]%2==1){
+                qsize++;
+            }
+            // if qsize is k ,calculate initialgap and add it to the answer
+            if(qsize ==k){
+                initialgap =0;
+                //calculate the number of even elements in the beginning of subarray
+                while(qsize ==k){
+                    qsize-=nums[start]%2;
+                    initialgap++;
+                    start++;
+                }
+            }
+            subarray+=initialgap;
+        }
+        return subarray;
+    }
+};
