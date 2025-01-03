@@ -137,3 +137,30 @@ public:
         return cnt;
     }
 };
+
+
+// 5 (medium - find the winner of the circular game)
+
+class Solution {
+public:
+    int findTheWinner(int n, int k) {
+        vector<int>circle;
+        for(int i=1;i<=n;i++){
+            circle.push_back(i);
+        }
+        
+        int startindex=0;
+
+        while(circle.size()>1){
+            int removalindex = (startindex+k-1)%circle.size();
+
+            circle.erase(circle.begin()+removalindex);
+
+            startindex=removalindex;
+        }
+
+        
+
+        return circle.front(); // returns remaining element in the circle
+    }
+};
