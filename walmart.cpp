@@ -56,3 +56,33 @@ public:
         return ans;
     }
 };
+
+/// 1208. Get Equal Substrings Within Budget
+
+class Solution {
+public:
+    int equalSubstring(string s, string t, int maxCost) {
+        int n = s.length();
+        int left = 0, right = 0;
+        int cost = 0;
+        int maxLength = 0;
+
+        while (right < n) {
+            // Add the cost of the current character
+            cost += abs(s[right] - t[right]);
+            right++;
+
+            // If the cost exceeds maxCost, shrink the window from the left
+            while (cost > maxCost) {
+                cost -= abs(s[left] - t[left]);
+                left++;
+            }
+
+            // Update the maximum length of the substring
+            maxLength = max(maxLength, right - left);
+        }
+
+        return maxLength;
+    }
+};
+
