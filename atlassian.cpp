@@ -41,4 +41,27 @@ public:
     }
 };
 
+//2958. Length of Longest Subarray With at Most K Frequency
+
+class Solution {
+public:
+    int maxSubarrayLength(vector<int>& nums, int k) {
+        int ans = 0, start = 0;
+        unordered_map<int, int> frequency;
+        
+        for (int end = 0; end < nums.size(); end++) {
+            frequency[nums[end]]++;
+            
+            while (frequency[nums[end]] > k) {
+                frequency[nums[start]]--;  // Decrement the frequency before moving the start pointer
+                start++;
+            }
+            
+            ans = max(ans, end - start + 1);  // Update the max length of the valid subarray
+        }
+        
+        return ans;
+    }
+};
+
 
